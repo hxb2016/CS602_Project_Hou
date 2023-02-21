@@ -1,0 +1,66 @@
+<div>
+  <div class="table-responsive">
+    <table class="table table-condensed">
+      {{#if data}}
+        <thead>
+          <tr>
+            <th>Customer ID</th>
+            <th>Customer First Name</th>
+            <th>Customer Last Name</th>
+            <th></th>
+          </tr>
+        </thead>
+      {{else}}
+        <tr><td colspan="3">The customer does not exist.</td></tr>
+      {{/if}}
+
+      <tbody>
+        <tr>
+          <td>{{data.customerID}}</td>
+          <td>{{data.firstName}}</td>
+          <td>{{data.lastName}}</td>
+        </tr>
+      </tbody>
+      <tfooter>
+        <tr><td></td></tr>
+      </tfooter>
+    </table>
+
+    <h4>History Orders</h4>
+
+    <table class="table table-condensed">
+      {{#if data.orders}}
+        <thead>
+          <tr>
+            <th>Product name</th>
+            <th>Product description</th>
+            <th>Product price</th>
+            <th>Product amount</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+      {{else}}
+        <tr><td colspan="3">No Orders found ... Order One!</td></tr>
+      {{/if}}
+      <tbody>
+        {{#each data.orders}}
+          <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.description}}</td>
+            <td>${{this.price}}</td>
+            <td>{{this.amount}}</td>
+            <td>{{this.date}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+      <tfooter>
+        <tr><td>
+            <button
+              class="btn btn-primary"
+              onClick="addOrders({{data.customerID}})"
+            >Order</button>
+          </td></tr>
+      </tfooter>
+    </table>
+  </div>
+</div>

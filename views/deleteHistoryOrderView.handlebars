@@ -1,0 +1,42 @@
+<div class="table-responsive">
+  <form
+    method="post"
+    action="/admin/delete/{{data.customerID}}/{{data.productID}}"
+  >
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Product name</th>
+          <th>Product description</th>
+          <th>Product price</th>
+          <th>Product amount</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{data.name}}</td>
+          <td>{{data.description}}</td>
+          <td>${{data.price}}</td>
+          <td>{{data.amount}}</td>
+          <td>{{data.date}}</td>
+        </tr>
+      </tbody>
+      <tfooter>
+        <tr>
+          <td></td>
+          <td>
+            <input type="submit" value="OK" class="btn btn-success" />
+            <input
+              type="button"
+              value="Cancel"
+              class="btn btn-danger"
+              class="cancel"
+              onclick="cancelDelete({{data.customerID}})"
+            />
+          </td>
+        </tr>
+      </tfooter>
+    </table>
+  </form>
+</div>

@@ -1,0 +1,64 @@
+<div class="table-responsive">
+
+  <form
+    method="post"
+    action="/admin/add/product"
+  >
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Product name</th>
+          <th>Product description</th>
+          <th>Product price</th>
+          <th>Product quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input
+              type="hidden"
+              name="productID"
+              value="{{productID}}"
+            /></td>
+          <td><input
+              type="text"
+              name="name"
+              required
+            /></td>
+          <td><input
+              type="text"
+              name="description"
+              required
+            /></td>
+          <td><input
+              type="number"
+              name="price"
+              required
+            /></td>
+          <td><input
+              type="number"
+              name="quantity"
+              required
+            /></td>
+        </tr>
+      </tbody>
+      <tfooter>
+        <tr>
+          <td></td>
+          <td>
+            <input type="submit" value="Save" class="btn btn-success" />
+            <input
+              type="button"
+              value="Cancel"
+              class="btn btn-danger"
+              class="cancel"
+              onclick="cancelAddProduct()"
+            />
+          </td>
+        </tr>
+      </tfooter>
+    </table>
+  </form>
+
+</div>

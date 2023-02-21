@@ -1,0 +1,59 @@
+<div class="table-responsive">
+
+  <form method="post" action="/admin/edit/{{data.customerID}}/{{data.productID}}">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Product name</th>
+          <th>Product description</th>
+          <th>Product price</th>
+          <th>Product amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input
+              type="text"
+              name="name"
+              required
+              value="{{data.name}}"
+            /></td>
+          <td><input
+              type="text"
+              name="description"
+              required
+              value="{{data.description}}"
+            /></td>
+          <td><input
+              type="text"
+              name="price"
+              required
+              value="{{data.price}}"
+            /></td>
+          <td><input
+              type="text"
+              name="amount"
+              required
+              value="{{data.amount}}"
+            /></td>
+        </tr>
+      </tbody>
+      <tfooter>
+        <tr>
+          <td></td>
+          <td>
+            <input type="submit" value="Save" class="btn btn-success" />
+            <input
+              type="button"
+              value="Cancel"
+              class="btn btn-danger"
+              class="cancel"
+              onclick="cancelEdit({{data.customerID}})"
+            />
+          </td>
+        </tr>
+      </tfooter>
+    </table>
+  </form>
+
+</div>

@@ -1,0 +1,73 @@
+<div class="table-responsive">
+
+  <form method="post" action="/customers/addOrders/{{data.customerID}}">
+    <table class="table table-condensed">
+      {{#if data.products}}
+        <thead>
+          <tr>
+            <th>Product name</th>
+            <th>Product description</th>
+            <th>Product price</th>
+            <th>Product quantity</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Quantity You Want</th>
+          </tr>
+        </thead>
+      {{else}}
+        <tr><td colspan="3">No Products found ... Add One!</td></tr>
+      {{/if}}
+      <tbody>
+        {{#each data.products}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{description}}</td>
+            <td>${{price}}</td>
+            <td>{{quantity}}</td>
+            <td><input
+                type="hidden"
+                name="productIDs"
+                value="{{productID}}"
+              /></td>
+            <td><input type="hidden" name="names" value="{{name}}" /></td>
+            <td><input
+                type="hidden"
+                name="descriptions"
+                value="{{description}}"
+              /></td>
+            <td><input type="hidden" name="prices" value="{{price}}" /></td>
+            <td><input
+                type="hidden"
+                name="quantitys"
+                value="{{quantity}}"
+              /></td>
+            <td><input
+                oninput="checkAmount(event,{{quantity}})"
+                type="number"
+                placeholder="Enter amount"
+                name="amounts"
+              /></td>
+          </tr>
+        {{/each}}
+      </tbody>
+      <tfooter>
+        <tr>
+          <td></td>
+          <td>
+            <input type="submit" value="Order" class="btn btn-success" />
+            <input
+              type="button"
+              value="Cancel orders"
+              class="btn btn-danger"
+              onclick="cancelAddOrders({{data.customerID}})"
+            />
+          </td>
+        </tr>
+      </tfooter>
+    </table>
+  </form>
+
+</div>

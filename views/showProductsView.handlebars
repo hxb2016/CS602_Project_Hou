@@ -1,0 +1,43 @@
+<div>
+  <div class="table-responsive">
+    <table class="table table-condensed">
+      {{#if data}}
+        <thead>
+          <tr>
+            <th>Product id</th>
+            <th>Product name</th>
+            <th>Product description</th>
+            <th>Product price</th>
+            <th>Product quantity</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+      {{else}}
+        <tr><td colspan="3">No Productss found ... Add One!</td></tr>
+      {{/if}}
+      <tbody>
+        {{#each data}}
+          <tr>
+            <td>{{productID}}</td>
+            <td>{{name}}</td>
+            <td>{{description}}</td>
+            <td>${{price}}</td>
+            <td>{{quantity}}</td>
+            <td>
+              <a href="/admin/editProduct/{{productID}}">Edit</a>
+            </td>
+            <td>
+              <a href="/admin/deleteProduct/{{productID}}">Delete</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+      <tfooter>
+        <td>
+          <input onclick="onclickAddProduct()" type="button" value="Add" class="btn btn-success" />
+        </td>
+      </tfooter>
+    </table>
+  </div>
+</div>
