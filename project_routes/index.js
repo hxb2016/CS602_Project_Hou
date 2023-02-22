@@ -1,18 +1,19 @@
 const express = require("express");
 const router = express.Router();
 
-// API modules
-const getAllProducts = require("./basic_apis/getAllProducts");
-const searchProductsByName = require("./basic_apis/searchProductsByName");
-const searchProductsByDes = require("./basic_apis/searchProductsByDes");
-const deleteProductByID = require("./basic_apis/deleteProduct");
-const deleteOrder = require("./basic_apis/deleteOrder");
-const searchCustomerById = require("./basic_apis/searchCustomerById");
-const insertProduct = require("./basic_apis/insertProduct");
-const searchProductsById = require("./basic_apis/searchProductsById");
-const updateProduct = require("./basic_apis/updateProduct");
-const updateCustomerOrder = require('./basic_apis/updateCustomerOrder');
-const getAllCustomers = require('./basic_apis/getAllCustomers');
+// REST API modules
+const getAllProducts = require("./rest_apis/getAllProducts");
+const searchProductsByName = require("./rest_apis/searchProductsByName");
+const searchProductsByDes = require("./rest_apis/searchProductsByDes");
+const deleteProductByID = require("./rest_apis/deleteProduct");
+const deleteOrder = require("./rest_apis/deleteOrder");
+const searchCustomerById = require("./rest_apis/searchCustomerById");
+const insertProduct = require("./rest_apis/insertProduct");
+const searchProductsById = require("./rest_apis/searchProductsById");
+const updateProduct = require("./rest_apis/updateProduct");
+const updateCustomerOrder = require('./rest_apis/updateCustomerOrder');
+const getAllCustomers = require('./rest_apis/getAllCustomers');
+const searchProductsByPrice=require('./rest_apis/searchProductsByPrice')
 
 // other modules
 const displayProducts = require("./merchant/displayProducts");
@@ -37,7 +38,7 @@ const deleteProduct = require("./admin/deleteProduct");
 const deleteProductAfterConfirm = require("./admin/deleteProductAfterConfirm");
 const addProduct = require("./admin/addProduct");
 const addProductAfterConfirm = require("./admin/addProductAfterConfirm");
-const addOrder = require('./basic_apis/addOrder');
+const addOrder = require('./rest_apis/addOrder');
 
 // router specs
 router.get("/", function (req, res, next) {
@@ -69,9 +70,10 @@ router.post("/admin/deleteProduct", deleteProductAfterConfirm);
 router.get("/admin/add/product", addProduct);
 router.post("/admin/add/product", addProductAfterConfirm);
 
-// APIs
+// REST APIs
 router.get("/get/allProducts", getAllProducts);
 router.get("/search/byName/:name", searchProductsByName);
+router.get("/search/byPrice/:high/:low", searchProductsByPrice);
 router.get("/search/byDes/:des", searchProductsByDes);
 router.get("/search/byID/:productID", searchProductsById);
 router.post("/delete/product", deleteProductByID);
