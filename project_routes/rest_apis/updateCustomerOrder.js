@@ -11,27 +11,18 @@ module.exports = async (req, res, next) => {
     (err, result, body) => {
       if (err) throw err;
 
-      let orders = body.orders;
-      let currentOrder;
-
-      for (let i = 0; i < orders.length; i++) {
-        let cell = orders[i];
-        // Find out the order record you are editing
-        if (cell.productID == req.body.productID) {
-          currentOrder = cell;
-          currentOrder.name = req.body.name;
-          currentOrder.description = req.body.description;
-          currentOrder.price = req.body.price;
-          currentOrder.amount = req.body.amount;
-          break;
-        }
-      }
+      // Find out the order record you are editing
+      let currentOrder = body.orders[req.body.index];
+      currentOrder.name = req.body.name;
+      currentOrder.description = req.body.description;
+      currentOrder.price = req.body.price;
+      currentOrder.amount = req.body.amount;
 
       // Update the data you have edited
       Customer.updateOne(
         { customerID: customerID },
         {
-          orders: orders,
+          orders: body.orders,
         },
         function (err, results) {
           if (err) throw err;

@@ -55,9 +55,9 @@ router.post("/customers/addOrders", submitOrders);
 router.get("/admin", adminInterface);
 router.get("/admin/display/customers", showCustomers);
 router.get("/admin/display/customers/:customerID", showCustomerSelected);
-router.get("/admin/deleteOrder/:customerID/:productID", deleteHistoryOrders);
+router.get("/admin/deleteOrder/:customerID/:index", deleteHistoryOrders);
 router.post("/admin/deleteOrder", deleteHistoryOrdersAfterConfirm);
-router.get("/admin/editOrder/:customerID/:productID", editHistoryOrders);
+router.get("/admin/editOrder/:customerID/:index", editHistoryOrders);
 router.post("/admin/editOrder", editHistoryOrdersAfterEdit);
 
 router.get("/admin/show/products", showProducts);
