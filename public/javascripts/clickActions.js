@@ -1,5 +1,6 @@
 function addOrders(customerID) {
   window.location.href = "/customers/addOrders/" + customerID;
+
 }
 
 function cancelAddOrders(customerID) {
@@ -7,11 +8,11 @@ function cancelAddOrders(customerID) {
 }
 
 function cancelDelete(customerID) {
-  window.location.href = "/admin/" + customerID;
+  window.location.href = "/admin/display/customers/" + customerID;
 }
 
 function cancelEdit(customerID) {
-  window.location.href = "/admin/" + customerID;
+  window.location.href = "/admin/display/customers/" + customerID;
 }
 
 function cancelEditProduct() {
@@ -31,5 +32,5 @@ function cancelAddProduct() {
 }
 
 function backToAdmin() {
-  window.location.href = "/admin";
+  window.location.href = "/admin/display/customers";
 }

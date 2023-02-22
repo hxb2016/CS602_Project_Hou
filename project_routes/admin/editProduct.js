@@ -1,19 +1,23 @@
-const productDB = require("../../productDB.js");
-const Product = productDB.getModel();
+const request = require("request");
 
 module.exports = async (req, res, next) => {
   let productID = req.params.productID;
-  let currentProduct = await Product.find({ productID: productID });
-  currentProduct = currentProduct[0];
-
-  res.render("editProductView", {
-    title: "Edit a Product",
-    data: {
-      productID: productID,
-      name: currentProduct.name,
-      description: currentProduct.description,
-      price: currentProduct.price,
-      quantity: currentProduct.quantity,
-    },
-  });
+  request(
+    "http://localhost:3000/search/byID/" + productID,
+    { json: true },
+    (err, result, body) => {
+      if (err) throw err;
+      res.render("editProductView", {
+        title: "Edit a Product",
+        data: {
+          productID: productID,
+          name: body.name,
+          description: body.description,
+          price: body.price,
+          quantity: body.quantity,
+        },
+      });
+    }
+  );
+  
 };

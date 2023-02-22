@@ -1,8 +1,6 @@
 <div class="table-responsive">
-  <form
-    method="post"
-    action="/admin/deleteProduct/{{data.productID}}"
-  >
+  <form method="post" action="/admin/deleteProduct">
+    <input type="hidden" name="productID" value="{{data.productID}}" />
     <table class="table table-condensed">
       <thead>
         <tr>

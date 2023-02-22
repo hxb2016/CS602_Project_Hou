@@ -5,6 +5,9 @@
 	<link rel='stylesheet' href='/stylesheets/bootstrap.css' />
 	<script src="/javascripts/clickActions.js" type="text/javascript"></script>
 	<script src="/javascripts/inputActions.js" type="text/javascript"></script>
+ 	<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://cdn.bootcss.com/handlebars.js/4.1.2/handlebars.min.js"></script>
+
 </head>
 <body>
 
@@ -13,10 +16,23 @@
 		<p>
 		<center>
 			<h3>CS602 Project - Xiaobing Hou</h3>
+			<nav id="nav">
+				<ul style="font-size: larger; font-weight: bold">
+					<li>
+					<a href="/">Merchant</a>
+					</li>
+					<li>
+					<a href="/customers/1">Customer</a>
+					</li>
+					<li>
+					<a href="/admin">Admin</a>
+					</li>
+				</ul>
+		</nav>
 			<h4>View: {{title}}</h4>
 		</center>
 	</header>
-	<div class="panel-body">
+	<div id="root" class="panel-body">
 		{{{body}}}
 	</div>
 	

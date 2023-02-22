@@ -1,25 +1,19 @@
-const CustomerDB = require("../../customerDB.js");
+const request = require("request");
 
-const Customer = CustomerDB.getModel();
 
 // display orders of certain customer
 
 module.exports = async (req, res, next) => {
+  request(
+    "http://localhost:3000/get/allCustomers",
+    { json: true },
+    (err, result, body) => {
+      if (err) throw err;
+      res.render("showCustomersView", {
+        title: "List of customers",
+        data: body,
+      });
+    }
+  );
 
-  Customer.find(function (err, result) {
-    if (err) throw err;
-    let results = result.map((emp) => {
-      return {
-        customerID: emp.customerID,
-        firstName: emp.firstName,
-        lastName: emp.lastName
-      };
-    });
-
-    res.render("showCustomersView", {
-      title: "Your List of customers",
-      data: results,
-    });
-    
-  });
 };

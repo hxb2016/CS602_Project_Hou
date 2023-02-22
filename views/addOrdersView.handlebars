@@ -1,6 +1,6 @@
-<div class="table-responsive">
+<div id="test45" class="table-responsive">
 
-  <form method="post" action="/customers/addOrders/{{data.customerID}}">
+  <form method="post" action="/customers/addOrders">
     <table class="table table-condensed">
       {{#if data.products}}
         <thead>
@@ -21,6 +21,7 @@
         <tr><td colspan="3">No Products found ... Add One!</td></tr>
       {{/if}}
       <tbody>
+        <input type="hidden" name="customerID" value="{{data.customerID}}" />
         {{#each data.products}}
           <tr>
             <td>{{name}}</td>

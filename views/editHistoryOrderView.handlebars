@@ -1,6 +1,6 @@
 <div class="table-responsive">
 
-  <form method="post" action="/admin/edit/{{data.customerID}}/{{data.productID}}">
+  <form method="post" action="/admin/editOrder">
     <table class="table table-condensed">
       <thead>
         <tr>
@@ -8,10 +8,13 @@
           <th>Product description</th>
           <th>Product price</th>
           <th>Product amount</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr>
+
           <td><input
               type="text"
               name="name"
@@ -35,6 +38,16 @@
               name="amount"
               required
               value="{{data.amount}}"
+            /></td>
+          <td><input
+              type="hidden"
+              name="customerID"
+              value="{{data.customerID}}"
+            /></td>
+          <td><input
+              type="hidden"
+              name="productID"
+              value="{{data.productID}}"
             /></td>
         </tr>
       </tbody>

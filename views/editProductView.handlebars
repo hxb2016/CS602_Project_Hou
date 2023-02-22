@@ -2,12 +2,12 @@
 
   <form
     method="post"
-    action="/admin/editProduct/{{data.productID}}"
+    action="/admin/editProduct"
   >
     <table class="table table-condensed">
       <thead>
         <tr>
-          <th>Product id</th>
+          <th></th>
           <th>Product name</th>
           <th>Product description</th>
           <th>Product price</th>
@@ -17,10 +17,8 @@
       <tbody>
         <tr>
           <td><input
-              disabled
-              type="text"
+              type="hidden"
               name="productID"
-              required
               value="{{data.productID}}"
             /></td>
           <td><input

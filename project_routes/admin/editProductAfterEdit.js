@@ -1,21 +1,17 @@
-const productDB = require("../../productDB.js");
-const Product = productDB.getModel();
+const request = require("request");
 
 module.exports = async (req, res, next) => {
-  let productID = req.params.productID;
-
-  let currentProduct = await Product.find({ productID: productID });
-  currentProduct = currentProduct[0];
-
-  await Product.updateOne(
-    { productID: productID },
+  request(
     {
-      name: req.body.name,
-      description: req.body.description,
-      price: req.body.price,
-      quantity: req.body.quantity,
+      url: "http://localhost:3000/update/product",
+      method: "POST",
+      json: true,
+      headers: {
+        "content-type": "application/json",
+      },
+      body: req.body,
     },
-    function (err, results) {
+    function (err, result, body) {
       if (err) throw err;
       res.redirect("/admin/show/products");
     }

@@ -1,28 +1,19 @@
-const customerDB = require("../../customerDB.js");
-const Customer = customerDB.getModel();
+const request = require("request");
 
 module.exports = async (req, res, next) => {
-  let customerID = req.params.customerID;
-  let productID = req.params.productID;
-
-  let currentCustomer = await Customer.find({ customerID: customerID });
-  let historyOrders = currentCustomer[0].orders;
-
-  for (let i = 0; i < historyOrders.length; i++) {
-    if (historyOrders[i].productID == productID) {
-      historyOrders.splice(i, 1);
-      break;
-    }
-  }
-
-  await Customer.updateOne(
-    { customerID: customerID },
+  request(
     {
-      orders: historyOrders,
+      url: "http://localhost:3000/delete/order",
+      method: "POST",
+      json: true,
+      headers: {
+        "content-type": "application/json",
+      },
+      body: req.body,
     },
-    function (err, results) {
+    function (err, result, body) {
       if (err) throw err;
-      res.redirect("/admin/" + customerID);
+      res.redirect("/admin/display/customers/" + req.body.customerID);
     }
   );
 };

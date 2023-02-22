@@ -1,18 +1,21 @@
-const productDB = require("../../productDB.js");
-const Product = productDB.getModel();
+const request = require("request");
 
 module.exports = async (req, res, next) => {
 
-  let product = new Product({
-    productID: req.body.productID,
-    name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
-    quantity: req.body.quantity,
-  });
+  request(
+    {
+      url: "http://localhost:3000/insert/product",
+      method: "POST",
+      json: true,
+      headers: {
+        "content-type": "application/json",
+      },
+      body: req.body,
+    },
+    function (err, result, body) {
+      if (err) throw err;
+      res.redirect("/admin/show/products");
+    }
+  );
 
-  product.save(function (err, result) {
-    if (err) throw err;
-    res.redirect("/admin/show/products");
-  });
 };
