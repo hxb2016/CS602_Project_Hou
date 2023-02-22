@@ -3,10 +3,11 @@ const request = require("request");
 module.exports = async (req, res, next) => {
   let customerID = req.body.customerID;
 
+  // Get the customer via customer id
   request(
     "http://localhost:3000/search/customer/" + customerID,
     { json: true },
-    async (err, result, body) => {
+    (err, result, body) => {
       if (err) throw err;
 
       let orders = body.orders;
@@ -22,10 +23,12 @@ module.exports = async (req, res, next) => {
       for (let index in amounts) {
         let amount = amounts[index].trim();
 
+        // Find all the products you selected
         if (amount > 0) {
           let quantity = quantitys[index];
           let productID = productIDs[index];
 
+          // Append the new order into current customer's orders
           orders.push({
             customerID: customerID,
             productID: productID,
@@ -36,6 +39,7 @@ module.exports = async (req, res, next) => {
             date: new Date().toLocaleString(),
           });
 
+          // Update the product's quantity you ordered
           request(
             {
               url: "http://localhost:3000/update/product",
@@ -49,7 +53,7 @@ module.exports = async (req, res, next) => {
                 name: productNames[index],
                 description: descriptions[index],
                 price: prices[index],
-                quantity: quantity - amount,
+                quantity: quantity - amount, // Update quantity
               },
             },
             function (err, result, body) {
@@ -59,6 +63,7 @@ module.exports = async (req, res, next) => {
         }
       }
 
+      // Update the customer's orders
       request(
         {
           url: "http://localhost:3000/add/order",

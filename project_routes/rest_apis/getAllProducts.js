@@ -2,29 +2,21 @@ const ProductDB = require("../../productDB");
 const Product = ProductDB.getModel();
 
 module.exports = async (req, res, next) => {
+  // Find all products from database
   let products = await Product.find();
 
-  let result = products.map((emp) => {
-    return {
-      productID: emp.productID,
-      name: emp.name,
-      description: emp.description,
-      price: emp.price,
-      quantity: emp.quantity,
-    };
-  });
-
+  // Create the response data format
   res.format({
     // JSON format
     "application/json": function () {
-      res.json(result);
+      res.json(products);
     },
     // XML format
     "application/xml": function () {
       let resultXml = ['<?xml version="1.0"?>'];
       resultXml.push("<products>");
 
-      result.forEach((element) => {
+      products.forEach((element) => {
         let cell = `<product>
         <productID>${element.productID}</productID>
 				<name>${element.name}</name>

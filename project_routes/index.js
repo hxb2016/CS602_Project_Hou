@@ -15,7 +15,7 @@ const updateCustomerOrder = require('./rest_apis/updateCustomerOrder');
 const getAllCustomers = require('./rest_apis/getAllCustomers');
 const searchProductsByPrice=require('./rest_apis/searchProductsByPrice')
 
-// other modules
+// Other modules
 const displayProducts = require("./merchant/displayProducts");
 const searchProducts = require("./merchant/searchProducts");
 
@@ -40,7 +40,7 @@ const addProduct = require("./admin/addProduct");
 const addProductAfterConfirm = require("./admin/addProductAfterConfirm");
 const addOrder = require('./rest_apis/addOrder');
 
-// router specs
+// Router specs
 router.get("/", function (req, res, next) {
   res.redirect("/products");
 });

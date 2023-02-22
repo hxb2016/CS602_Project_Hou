@@ -2,6 +2,7 @@ const request = require("request");
 
 module.exports = async (req, res, next) => {
 
+  // Delete one product you want to 
   request(
     {
       url: "http://localhost:3000/delete/product",
@@ -14,6 +15,7 @@ module.exports = async (req, res, next) => {
     },
     function (err, result, body) {
       if (err) throw err;
+      // Turn back
       res.redirect("/admin/show/products");
     }
   );

@@ -2,6 +2,7 @@ const request = require("request");
 
 module.exports = async (req, res, next) => {
 
+  // Insert new product into database
   request(
     {
       url: "http://localhost:3000/insert/product",
@@ -14,6 +15,7 @@ module.exports = async (req, res, next) => {
     },
     function (err, result, body) {
       if (err) throw err;
+      // Turn to last page
       res.redirect("/admin/show/products");
     }
   );

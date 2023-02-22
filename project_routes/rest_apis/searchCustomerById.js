@@ -2,7 +2,9 @@ const customerDB = require("../../customerDB.js");
 const Customer = customerDB.getModel();
 
 module.exports = async (req, res, next) => {
+  // Get customer id from request
   let customerID = req.params.customerID;
+  // Find current customer via customer id
   let currentCustomer = await Customer.find({ customerID: customerID });
   currentCustomer = currentCustomer[0];
   res.format({

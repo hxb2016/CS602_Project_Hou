@@ -2,9 +2,11 @@ const customerDB = require("../../customerDB.js");
 const Customer = customerDB.getModel();
 
 module.exports = async (req, res, next) => {
+  // Update current customer
   Customer.updateOne(
     { customerID: req.body.customerID },
     {
+      // Update current customer orders. The new order received comes from request
       orders: req.body.orders,
     },
     function (err, results) {

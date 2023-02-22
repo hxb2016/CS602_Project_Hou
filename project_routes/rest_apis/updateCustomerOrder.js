@@ -3,17 +3,20 @@ const Customer = customerDB.getModel();
 const request = require("request");
 
 module.exports = async (req, res, next) => {
+  let customerID = req.body.customerID;
+  // Get the customer data via customer id
   request(
-    "http://localhost:3000/search/customer/" + req.body.customerID,
+    "http://localhost:3000/search/customer/" + customerID,
     { json: true },
     (err, result, body) => {
       if (err) throw err;
 
-      let historyOrders = body.orders;
+      let orders = body.orders;
       let currentOrder;
 
-      for (let i = 0; i < historyOrders.length; i++) {
-        let cell = historyOrders[i];
+      for (let i = 0; i < orders.length; i++) {
+        let cell = orders[i];
+        // Find out the order record you are editing
         if (cell.productID == req.body.productID) {
           currentOrder = cell;
           currentOrder.name = req.body.name;
@@ -24,10 +27,11 @@ module.exports = async (req, res, next) => {
         }
       }
 
+      // Update the data you have edited
       Customer.updateOne(
-        { customerID: req.body.customerID },
+        { customerID: customerID },
         {
-          orders: historyOrders,
+          orders: orders,
         },
         function (err, results) {
           if (err) throw err;

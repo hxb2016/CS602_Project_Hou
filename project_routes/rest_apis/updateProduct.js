@@ -3,6 +3,7 @@ const Product = productDB.getModel();
 
 module.exports = async (req, res, next) => {
 
+  // Update product data you have edited
   await Product.updateOne(
     { productID: req.body.productID },
     {
@@ -13,6 +14,7 @@ module.exports = async (req, res, next) => {
     },
     function (err, results) {
       if (err) throw err;
+      
       res.format({
         // JSON format
         "application/json": function () {

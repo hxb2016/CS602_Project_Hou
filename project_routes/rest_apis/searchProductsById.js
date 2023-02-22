@@ -4,6 +4,7 @@ const Product = ProductDB.getModel();
 // display employees
 
 module.exports = async (req, res, next) => {
+  // Find product from database via product id
   Product.find({ productID: req.params.productID }, function (err, result) {
     if (err) throw err;
     res.format({

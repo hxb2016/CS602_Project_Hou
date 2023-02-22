@@ -2,6 +2,7 @@ const customerDB = require("../../customerDB.js");
 const Customer = customerDB.getModel();
 
 module.exports = async (req, res, next) => {
+  // Find all customers from database
   Customer.find(function (err, result) {
     if (err) throw err;
     res.format({

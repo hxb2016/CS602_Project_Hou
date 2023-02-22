@@ -4,6 +4,7 @@ const Product = productDB.getModel();
 module.exports = async (req, res, next) => {
   let productID = req.body.productID;
 
+  // Delete one product data from database via product id
   await Product.deleteOne({ productID: productID }, function (err, results) {
     if (err) throw err;
 
