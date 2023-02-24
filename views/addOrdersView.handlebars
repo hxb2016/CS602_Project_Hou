@@ -1,5 +1,34 @@
 <div id="test45" class="table-responsive">
+  <form method="get" action="/products/search">
+    <table class="table table-condensed">
+      <input type="hidden" name="customerID" value="{{data.customerID}}" />
+      <tbody>
+        <tr>
+          <th>Search By Name: </th>
+          <td><input
+              type="text"
+              name="name"
+              placeholder="Enter project name"
+            /></td>
+        </tr>
+        <tr>
+          <th>Search By description: </th>
+          <td><input
+              type="text"
+              name="des"
+              placeholder="Enter project description"
+            /></td>
+        </tr>
+      </tbody>
 
+      <tfoot>
+        <td>
+          <input type="submit" value="Search" class="btn btn-success" />
+        </td>
+      </tfoot>
+
+    </table>
+  </form>
   <form method="post" action="/customers/addOrders">
     <table class="table table-condensed">
       {{#if data.products}}
@@ -58,7 +87,7 @@
         <tr>
           <td></td>
           <td>
-            <input type="submit" value="Order" class="btn btn-success" />
+            <input type="submit" value="Submit" class="btn btn-success" />
             <input
               type="button"
               value="Cancel orders"

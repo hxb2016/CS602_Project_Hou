@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
 
   // If there is no key words
   if (!productName && !productDes) {
-    res.redirect("/products");
+    res.redirect("/customers/addOrders/" + req.query.customerID);
   } else {
     // If the key words is about name
     if (productName) {
@@ -16,21 +16,28 @@ module.exports = async (req, res, next) => {
         { json: true },
         (err, result, body) => {
           if (err) throw err;
-          res.render("displayProductsView", {
+          res.render("addOrdersView", {
             title: "Results of searching",
-            data: body,
+            data: {
+              products: body,
+              customerID: req.query.customerID,
+            },
           });
         }
       );
-    } else { // If the key words is about description
+    } else {
+      // If the key words is about description
       request(
         "http://localhost:3000/search/byDes/" + productDes,
         { json: true },
         (err, result, body) => {
           if (err) throw err;
-          res.render("displayProductsView", {
+          res.render("addOrdersView", {
             title: "Results of searching",
-            data: body,
+            data: {
+              products: body,
+              customerID: req.query.customerID,
+            },
           });
         }
       );
