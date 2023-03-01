@@ -17,7 +17,6 @@ const searchProductsByPrice=require('./rest_apis/searchProductsByPrice')
 
 // Other modules
 const searchProducts = require("./customer/searchProducts");
-
 const dispalyCustomer = require("./customer/displayCustomer");
 const customerAddOrders = require("./customer/customerAddOrders");
 const submitOrders = require("./customer/submitOrders");
